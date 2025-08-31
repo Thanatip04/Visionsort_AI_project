@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="student.css">
+</head>
+<body>
+  <div class="container">
+    <!-- การ์ดข้อมูลนักเรียน -->
+    <div class="card profile-card">
+      <div class="avatar-wrap">
+        <img id="avatar" src="../profile/Thanathip.jpg" alt="Avatar">
+      </div>
+      <div class="profile-info">
+        <p><strong>รหัส:</strong> <span id="stu-id">-</span></p>
+        <p><strong>ชื่อ:</strong> <span id="stu-name">-</span></p>
+        <p><strong>ชั้น:</strong> <span id="stu-class">-</span></p>
+        <button id="logout-btn" class="btn danger">ออกจากระบบ</button>
+      </div>
+      <div class="score-card">
+        <h4>คะแนนสะสม</h4>
+        <p id="stu-score">0</p>
+      </div>
+    </div>
+
+    <!-- ประวัติการคัดแยก -->
+    <div class="card table-card">
+      <h3>ประวัติการคัดแยก</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>วันที่</th>
+            <th>ประเภทขยะ</th>
+            <th>คะแนน</th>
+          </tr>
+        </thead>
+        <tbody id="history-tbody"></tbody>
+      </table>
+    </div>
+
+    <!-- ฟีดแบ็ก -->
+    <div class="card">
+      <h3>แจ้งปัญหา</h3>
+      
+      <label for="bin-id">รหัสถังขยะ</label>
+      <select id="bin-id">
+        <option value="">-- เลือกรหัสถังขยะ --</option>
+        <!-- จะเติม option จาก JS -->
+      </select>
+
+      <textarea id="feedback-msg" rows="3" placeholder="พิมพ์ข้อความของคุณ..."></textarea>
+      <button id="feedback-btn" class="btn">ส่ง</button>
+      <div id="feedback-status"></div>
+    </div>
+  </div>
+
+  <script src="student.js"></script>
+</body>
+</html>

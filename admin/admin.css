@@ -1,0 +1,282 @@
+/* -------------------------------------------------------------------------- */
+/* ตัวแปร CSS                                                                 */
+/* -------------------------------------------------------------------------- */
+:root { 
+  --primary: #22c55e;   /* สีเขียวหลัก */
+  --border: #e2e8f0;    /* สีเส้นขอบ */
+  --text: #334155;      /* สีข้อความหลัก */
+  --muted: #64748b;     /* สีข้อความรอง */
+  --card: #fff;         /* สีพื้นหลังการ์ด */
+}
+
+/* -------------------------------------------------------------------------- */
+/* รีเซ็ต CSS                                                                  */
+/* -------------------------------------------------------------------------- */
+* { box-sizing: border-box; }
+
+/* -------------------------------------------------------------------------- */
+/* สไตล์พื้นฐานของ Body                                                       */
+/* -------------------------------------------------------------------------- */
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui;
+  background: #f8fafc;
+  color: var(--text);
+}
+
+/* -------------------------------------------------------------------------- */
+/* แถบนำทาง                                                                    */
+/* -------------------------------------------------------------------------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 12px;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  height: 68px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+}
+.nav {
+  display: flex;
+  gap: 12px;
+}
+.nav-item {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0px 4px;
+  border-bottom: 2px solid transparent;
+}
+.nav-item.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+.userbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 8px 12px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn.danger { background: #ef4444; }
+
+.profile-icon {
+  font-size: 1.4rem;
+  cursor: default;
+}
+
+/* ถ้าต้องการซ่อนด้วย JS เมื่อไม่มีข้อมูลผู้ใช้ */
+.profile-icon.hidden {
+  display: none !important;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------- */
+/* ส่วนเนื้อหาหลัก                                                             */
+/* -------------------------------------------------------------------------- */
+.container {
+  max-width: 1200px;
+  margin: 16px auto;
+  padding: 0 16px;
+}
+
+/* KPI Cards */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.06);
+  padding: 14px;
+}
+.card h3 {
+  margin: 0;
+  color: var(--muted);
+}
+.card p {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: .35rem 0 0;
+}
+
+.system-health ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.system-health li {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  font-weight: 600;
+}
+.status-dot {
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  color: #fff;
+}
+.status-dot.online { background: #22c55e; }   /* เขียว */
+.status-dot.offline { background: #ef4444; }  /* แดง */
+
+
+/* -------------------------------------------------------------------------- */
+/* กราฟ                                                                        */
+/* -------------------------------------------------------------------------- */
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.chart-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* กันเนื้อหาล้น */
+}
+.chart-card h3 {
+  margin: 0 0 8px 0;
+}
+.chart-wrap {
+  position: relative;
+  width: 100%;
+  height: 340px; /* ความสูงเริ่มต้น */
+}
+.chart-wrap canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* -------------------------------------------------------------------------- */
+/* ตารางข้อมูล                                                                 */
+/* -------------------------------------------------------------------------- */
+.table-card table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+.table-card th, .table-card td {
+  padding: .7rem 1rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+.table-card th {
+  background: #f1f5f9;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;   /* ให้เลื่อนในแนวนอนถ้าล้น */
+}
+
+.table-responsive table {
+  min-width: 600px;   /* กำหนดความกว้างขั้นต่ำของตาราง */
+  border-collapse: collapse;
+}
+
+.status {
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  display: inline-block;
+}
+.status.full {
+  background: #ef4444; /* แดง */
+  color: #fff;
+}
+.status.not-full {
+  background: #22c55e; /* เขียว */
+  color: #fff;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Dashboard Sections                                                          */
+/* -------------------------------------------------------------------------- */
+.dashboard-section { display: none; }
+.dashboard-section.active { display: block; }
+
+/* -------------------------------------------------------------------------- */
+/* Responsive                                                                  */
+/* -------------------------------------------------------------------------- */
+@media (max-width: 960px) {
+  .chart-grid { grid-template-columns: 1fr; }
+}
+@media (min-width: 1200px) {
+  .chart-wrap { height: 380px; }
+}
+@media (max-width: 480px) {
+  .chart-wrap { height: 300px; }
+}
+
+@media (max-width: 768px) {
+  /* ซ่อนชื่อระบบและข้อความสวัสดีบนจอเล็ก */
+  .site-title { display: none; }
+  #admin-name { display: none; }
+  /* ซ่อนปุ่ม logout บน topbar */
+  .userbox .btn.danger { display: none; }
+
+  /* แสดงปุ่มเมนู */
+  .menu-toggle { display: block; }
+
+  /* เมนูแบบเลื่อนลง */
+  .nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid var(--border);
+    padding: 10px 0;
+  }
+  .nav.show { display: flex; }
+
+  /* ลิงก์เมนูและปุ่ม logout ในเมนู */
+  .nav-item, .nav .btn {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+  }
+}
+
+/* ซ่อนไอคอนโปรไฟล์บนจอใหญ่ */
+@media (min-width: 769px) {
+  .profile-icon {
+    display: none;
+  }
+}

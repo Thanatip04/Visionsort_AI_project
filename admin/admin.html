@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Visionsort Admin Dashboard</title>
+  <link rel="stylesheet" href="admin.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+  <!-- Header + Navbar -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">VS</div>
+      <h1 class="site-title">Vision Sort AI Bin Dashboard</h1>
+    </div>
+    <div class="userbox">
+      <span id="admin-name"></span>
+      <div class="profile-icon">👤</div>
+      <div class="menu-toggle">☰</div>
+    </div>
+    <nav class="nav">
+      <a href="#" class="nav-item active" data-target="overview">ภาพรวม</a>
+      <a href="#" class="nav-item" data-target="users">ผู้ใช้งาน</a>
+      <a href="#" class="nav-item" data-target="bins">สถานะถังขยะ</a>
+      <a href="#" class="nav-item" data-target="feedback">การแจ้งปัญหา</a>
+      <button id="logout-btn" class="btn danger">ออกจากระบบ</button>
+    </nav>
+
+  </header>
+
+  <!-- Main content -->
+  <main class="container">
+    <!-- Overview -->
+    <section id="overview" class="dashboard-section active">
+      <div class="kpi-grid">
+        <div class="card system-health">
+            <h3>สถานะระบบ</h3>
+            <ul>
+                <li>AI: <span id="status-ai" class="status-dot offline">Offline</span></li>
+                <li>กล้อง: <span id="status-camera" class="status-dot offline">Offline</span></li>
+                <li>micro:bit: <span id="status-microbit" class="status-dot offline">Offline</span></li>
+                <li>Uptime ล่าสุด: <span id="uptime">-</span></li>
+            </ul>
+        </div>
+
+        <div class="card">
+          <h3>คัดแยกวันนี้จำนวนทั้งหมด</h3>
+          <p id="kpi-today">0</p>
+        </div>
+        <div class="card">
+          <h3>ความแม่นยำของ AI</h3>
+          <p id="kpi-acc">0%</p>
+        </div>
+        <div class="card">
+          <h3>จำนวนทั้งหมด</h3>
+          <p id="kpi-total">0</p>
+        </div>
+      </div>
+
+      <div class="chart-grid">
+        <div class="card chart-card">
+          <h3>สถิติย้อนหลัง 7 วัน</h3>
+          <div class="chart-wrap">
+            <canvas id="chart7d"></canvas>
+          </div>
+        </div>
+
+        <div class="card chart-card">
+          <h3>สัดส่วนประเภทขยะ</h3>
+          <div class="chart-wrap">
+            <canvas id="chartTypes"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Users -->
+    <section id="users" class="dashboard-section">
+      <div class="card table-card">
+        <h3>รายชื่อผู้ใช้งาน</h3>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>ชื่อ</th>
+                <th>บทบาท</th>
+                <th>ชั้น</th>
+                <th>คะแนน</th>
+              </tr>
+            </thead>
+            <tbody id="users-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bins -->
+    <section id="bins" class="dashboard-section">
+      <div class="card table-card">
+        <h3>สถานะถังขยะทั้งหมด</h3>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>รหัส</th>
+                <th>ตำแหน่ง</th>
+                <th>พลาสติก</th>
+                <th>รีไซเคิล</th>
+                <th>ทั่วไป</th>
+                <th>อัปเดตล่าสุด</th>
+              </tr>
+            </thead>
+            <tbody id="bins-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="map" style="height: 400px; margin-top: 20px;"></div>
+    </section>
+
+    <!-- Feedback -->
+    <section id="feedback" class="dashboard-section">
+      <div class="card table-card">
+        <h3>การแจ้งปัญหาล่าสุด</h3>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>User ID</th>
+                <th>รหัส</th>
+                <th>ข้อความ</th>
+                <th>เวลา</th>
+              </tr>
+            </thead>
+          <tbody id="feedback-tbody"></tbody>
+        </table>
+        </div>
+        
+      </div>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>

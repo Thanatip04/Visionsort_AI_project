@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Visionsort - เข้าสู่ระบบ</title>
+  <link rel="stylesheet" href="login2.css">
+</head>
+<body>
+  <div class="card">
+    <h1>LOG IN</h1>
+    <p class="hint">- เข้าสู่ระบบเพื่อสะสมคะแนน - </p>
+    <form id="login-form">
+      <label for="user-id">รหัสประจำตัวนักเรียน</label>
+      <input id="user-id" type="text" placeholder="เช่น 21915 หรือ admin" required />
+      <div id="password-wrap" style="display:none;">
+        <label for="password">รหัสผ่าน (สำหรับผู้ดูแลระบบ)</label>
+        <input id="password" type="password" placeholder="รหัสผ่านแอดมิน"/>
+      </div>
+      <button class="btn" type="submit">เข้าสู่ระบบ</button>
+      <div id="error" class="error"></div>
+    </form>
+  </div>
+  <script src="login2.js"></script>
+</body>
+</html>

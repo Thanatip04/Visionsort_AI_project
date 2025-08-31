@@ -1,0 +1,225 @@
+:root {
+  --primary: #22c55e;
+  --border: #e2e8f0;
+  --text: #334155;
+  --muted: #64748b;
+  --card: #fff;
+  --score-bg: #e0f2fe; /* ฟ้าอ่อน */
+  --score-text: #0284c7; /* ฟ้าเข้ม */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui;
+  background: #f8fafc;
+  color: var(--text);
+}
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+  overflow-y: auto; /* อนุญาตให้เลื่อน */
+}
+
+.container {
+  max-width: 900px;
+  min-height:auto; /* ให้สูงอย่างน้อยเท่าจอ */
+  margin: 16px auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.06);
+  padding: 14px;
+}
+
+.card h3 {
+  margin: 0 0 8px 0;
+  color: var(--muted);
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.avatar-wrap img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 5px solid var(--primary);
+  object-fit: cover;
+  transition: width 0.3s, height 0.3s;
+}
+
+.profile-info {
+  flex: 1;
+  min-width: 200px;
+}
+
+.profile-info p {
+  margin: 6px 0;
+  font-size: 1rem;
+}
+
+.score-card {
+  background: var(--score-bg);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  min-width: 120px;
+}
+
+.score-card h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--score-text);
+}
+
+.score-card p {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: .5rem 0 0;
+  color: var(--score-text);
+}
+
+.table-card {
+  overflow-x: auto; /* ให้เลื่อนในแนวนอนได้บนจอเล็ก */
+}
+
+.table-card table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  min-width: 480px; /* ป้องกันคอลัมน์เบียดกันเกินไป */
+}
+
+.table-card th, .table-card td {
+  padding: .7rem 1rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.table-card th {
+  background: #f1f5f9;
+  font-weight: 600;
+}
+
+textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.btn:hover {
+  background: #16a34a;
+}
+
+.btn.danger {
+  background: #ef4444;
+}
+
+#feedback-status {
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+
+/* มือถือเล็กมาก (<=400px) */
+@media (max-width: 400px) {
+  .avatar-wrap img {
+    width: 72px;
+    height: 72px;
+  }
+
+  .profile-info p {
+    font-size: 0.9rem;
+  }
+
+  .score-card p {
+    font-size: 1.5rem;
+  }
+}
+
+/* มือถือทั่วไป (<=600px) */
+@media (max-width: 600px) {
+  .container {
+    padding: 0 8px;
+  }
+
+  .profile-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .avatar-wrap img {
+    width: 90px;
+    height: 90px;
+  }
+
+  .profile-info {
+    text-align: center;
+  }
+
+  .score-card {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .score-card p {
+    font-size: 1.8rem;
+  }
+}
+
+/* 📱 แท็บเล็ต (<=768px) */
+@media (max-width: 768px) {
+  .avatar-wrap img {
+    width: 100px;
+    height: 100px;
+  }
+  .score-card {
+    min-width: 100px;
+  }
+}
+
+/* 💻 จอกลาง (<=1024px) */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 95%;
+  }
+}
+
+/* ให้ตารางเลื่อนในแนวนอนบนจอเล็ก */
+.table-card {
+  overflow-x: auto;
+}
+.table-card table {
+  min-width: 480px;
+}
